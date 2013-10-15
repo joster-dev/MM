@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-ng-app="memoryGameApp">
+<head>
+	<meta 
+	charset="utf-8" />
+	<title>Clicker</title>
+
+	<link href="style.css" rel="stylesheet" />
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+</head>
+<body data-ng-controller="gameCtrl">
+	<section 
+	id="menu"
+	data-ng-hide="!game.showMenu">
+		<div id="title">Memory Mastery</div>
+		<div class="option"></div>
+		<div class="option"></div>
+		<div 
+		id="start"
+		data-ng-click="changeViews(false)">Start</div>
+	</section>
+	<section 
+	id="game"
+	data-ng-hide="!game.showBoard">		
+		<div
+		class="row" 
+		data-ng-repeat="items in game.grid">
+			<div
+			class="tile"
+			data-ng-repeat="item in game.grid"
+			data-ng-class="{selected : game.grid[parent.$index][$index]}"
+			data-ng-click="clickTile(parent.$index, $index)"></div>
+		</div>
+	</section>
+	<div id="message">{{game.message}}</div>
+	<section
+	id="retry"
+	data-ng-hide="!game.showRetry">
+		<div>Game Over</div>
+		<div
+		id="continue"
+		data-ng-click="changeViews(false)">Retry</div>
+		<div 
+		id="backToMenu"
+		data-ng-click="changeViews(true)">Back To Menu</div>
+	</section>
+</body>
+</html>
+
+<!--data-ng-style="randomColor()"-->
