@@ -1,6 +1,14 @@
-#menu {
+body {
+	margin: 0;
+	width: 100%;
 	position: absolute;
+	height: 100%;
+}
+
+#menu {
+	width: 200px;
 	background-color: #000;
+	margin: 5% auto;
 	div {
 		width: 100%;
 	}
@@ -21,27 +29,37 @@
 }
 
 #retry {
-	
+	margin: 5% auto;
 }
 
 #game {
-	position: absolute;
+	margin: 5% auto;
+	width: 80%;
+	height: 80%;
 	.row {
-		height: 200px;
-		position: relative;
+		height: 49.5%;
 	}
 	.tile {
-		margin: 1px;
-		border: 1px solid black;
+		margin: 0 auto;
 		display: inline-block;
-		height: 200px;
-		width: 200px;
+		border: 1px solid black;
+		height: 100%;
+		width: 49.5%;
+		transition : 400ms;
+		&.selected {
+			box-shadow: 0 0 0 2% yellow;
+			background-color: purple;
+		}
 	}
 }
 
 #message {
+	font-size: 9em;
 	position: absolute;
-	font-size: large;
-	color: black;
-	margin: auto;
+	color: #000;
+	text-align: center;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -23,15 +23,59 @@
 		};
 		$scope.game = gameConstuctor();
 
+		$scope.option1Construct = [1, 2, 3];
+		$scope.option1 = function(id) {
+			switch(id) {
+				case 0:
+					$scope.game.clicks = 6;
+					return;
+				case 1:
+					$scope.game.clicks = 12;
+					return;
+				case 2:
+					$scope.game.clicks = 24;
+					return;
+			}
+		}
+		$scope.option2 = function(id) {
+			switch(id) {
+				case 0:
+					$scope.game.size = 2;
+					$scope.game.grid = [
+						[false, false],
+						[false, false]
+					];
+					return;
+				case 1:
+					$scope.game.size = 3;
+					$scope.game.grid = [
+						[false, false, false],
+						[false, false, false],
+						[false, false, false]
+					];
+					return;
+				case 2:
+					$scope.game.size = 4;
+					$scope.game.grid = [
+						[false, false, false, false],
+						[false, false, false, false],
+						[false, false, false, false],
+						[false, false, false, false]
+					];
+					return;
+			}
+		}
+
 		var showPattern = function(){
 			var counter = 0,
 				iter = 0;
 			for(var i = 0; i < $scope.game.clicks; i++) {
 				$scope.game.correct.push(Math.floor(Math.random() * Math.pow($scope.game.size, 2)));
-				counter += 400;
+				counter += 800;
 				$timeout(function(){
 					var show = $scope.game.correct[iter];
 					$scope.resetGrid();
+					console.log(Math.floor(show / $scope.game.size) + " and " + show % $scope.game.size);
 					$scope.game.grid[Math.floor(show / $scope.game.size)][show % $scope.game.size] = true;
 					iter++;
 				}, counter);
@@ -39,7 +83,7 @@
 			$timeout(function(){
 				$scope.resetGrid();
 				$scope.game.clicksAllowed = true;
-			}, counter+400);
+			}, counter+800);
 		};
 
 		$scope.changeViews = function(menu) {
@@ -50,11 +94,11 @@
 				$scope.game.showRetry = false;
 			}
 			else {
-				$scope.game.showMenu = false;
-				$scope.game.showBoard = true;
-				$scope.game.showRetry = false;
 				$scope.game.message = "Get Ready";
+				$scope.game.showMenu = false;
 				$timeout(function(){
+					$scope.game.showBoard = true;
+					$scope.game.showRetry = false;
 					showPattern();
 					$scope.game.message = "";
 				}, 1000);
