@@ -14,18 +14,22 @@
 	<section 
 	id="menu"
 	data-ng-hide="!game.showMenu">
-		<div id="title">Memory Mastery</div>
+		<div class="title">Memory Mastery</div>
 		<div class="option">
 			<div class="optTitle">Difficulty</div>
 			<div 
-			data-ng-repeat="option in optionConstruct"
-			data-ng-click="option1($index)"></div>
+			class="choice 1"
+			data-ng-repeat="option in option1"
+			data-ng-class="{chosen : option1[$index].selected}"
+			data-ng-click="option1Choice($index)">{{option1[$index].text}}</div>
 		</div>
 		<div class="option">
 			<div class="optTitle">Size</div>
 			<div 
-			data-ng-repeat="option in optionConstruct"
-			data-ng-click="option1($index)"></div>
+			class="choice 2";
+			data-ng-repeat="option in option2"
+			data-ng-class="{chosen : option2[$index].selected}"
+			data-ng-click="option2Choice($index)">{{option2[$index].text}}</div>
 		</div>
 		<div 
 		id="start"
@@ -40,15 +44,16 @@
 			<div
 			class="tile"
 			data-ng-repeat="item in game.grid"
-			data-ng-class="{selected : game.grid[$parent.$index][$index]}"
+			data-ng-class="{selected : game.grid[$parent.$index][$index].selected}"
+			data-ng-style="{'background-color' : '#' + game.grid[$parent.$index][$index].color}"
 			data-ng-click="clickTile($parent.$index, $index)"></div>
 		</div>
 	</section>
-	<h1 id="message">{{game.message}}</h1>
+	<h1 id="message">{{message}}</h1>
 	<section
 	id="retry"
 	data-ng-hide="!game.showRetry">
-		<div>Game Over</div>
+		<div class="title"></div>
 		<div
 		id="continue"
 		data-ng-click="changeViews(false)">Retry</div>
